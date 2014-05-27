@@ -26,7 +26,5 @@ function loadStaticFile(path, response) {
   });
 }
 
-exports.biggifs = biggifs;
-exports.recipes = recipes;
 exports.busroutes = busroutes;
-exports.majesticwoodcock = majesticwoodcock;
+

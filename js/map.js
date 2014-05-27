@@ -41,7 +41,7 @@ function zeroMap(){
 
 function loadStopData(route, cb) {
   
-  var url = "http://" + window.location.hostname + "/api/busroutes/" + route;
+  var url = window.location.origin + "/api/busroutes/" + route;
 
   $.getJSON(url, function(data){
   
@@ -65,7 +65,7 @@ function loadStopData(route, cb) {
       
       polyRoute.push(new google.maps.LatLng(lat,lon));
       
-      var icon = "/images/mapmarkers/marker_rounded_";
+      var icon = "markers/marker_rounded_";
       
       if (i === 0) {
         icon += "green.png";
