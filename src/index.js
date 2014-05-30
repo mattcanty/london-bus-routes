@@ -1,4 +1,4 @@
-var busdatafacade = require('./busdatafacade');
+var busdatafacade = require('./bus-data-facade');
 var url = require('url');
 
 function handleRequest(response, request){

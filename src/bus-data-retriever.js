@@ -1,10 +1,10 @@
 var downloader = require("./downloader");
-var elasticsearchclient = require("./elasticsearchclient");
+var elasticsearchclient = require("./elastic-search-client");
 var parser = require("./parser");
 
 var tflApiKey = "ff634865ae7e23fbd9488951e36a7455";
 var tflBaseUrl = "http://data.tfl.gov.uk/tfl/syndication/feeds/";
-var tempDir = "/nodedev/temp/";
+var tempDir = "./temp/";
 
 //var busStopsUrl = tflBaseUrl + "bus-stops.csv?app_id=d081e14d&app_key=" + tflApiKey;
 var busSeqsUrl = tflBaseUrl + "bus-sequences.csv?app_id=d081e14d&app_key=" + tflApiKey;
