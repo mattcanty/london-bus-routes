@@ -1,8 +1,6 @@
-London Bus Routes API
-=====================
+London Bus Routes
+=================
 
-Downloads TFL's London bus route data.
+Shows data retrieved by [london-bus-routes-api](https://github.com/matthewcanty/london-bus-routes-api) on a simple to use interface.
 
-[![Code Climate](https://codeclimate.com/github/matthewcanty/london-bus-routes.png)](https://codeclimate.com/github/matthewcanty/london-bus-routes)
-
-The data can be viewed using the app running at: http://busroutes.matthewcanty.co.uk/ ([View in Git](https://github.com/matthewcanty/london-bus-routes))
+Check out the website: http://busroutes.matthewcanty.co.uk/
