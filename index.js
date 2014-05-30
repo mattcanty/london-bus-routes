@@ -6,5 +6,6 @@ var api = require('../api/src');
 var handle = {};
 handle["api"] = api.handleRequest;
 handle["busroutes"] = requestHandlers.busroutes;
+handle[""] = requestHandlers.busroutes;
 
 server.start(router.route, handle);
