@@ -41,7 +41,7 @@ function zeroMap(){
 
 function loadStopData(route, cb) {
   
-  var url = window.location.origin + "/api/busroutes/" + route;
+  var url = "http://localhost:12345/route/" + route;
 
   $.getJSON(url, function(data){
   

@@ -2,7 +2,6 @@ var static = require('node-static');
 
 var fileServer = new static.Server();
 
-
 function route(handle, pathname, response, request){
   console.log("About to route a request for: '" + pathname + "'.");
   
