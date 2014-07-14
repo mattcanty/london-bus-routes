@@ -1,7 +1,4 @@
-var querystring = require("querystring");
 var fs = require("fs");
-var formidable = require("formidable");
-var util = require('util');
 
 function busroutes(response, request) {
   console.log("Request handler 'busroutes' was called");
