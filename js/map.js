@@ -41,7 +41,7 @@ function zeroMap(){
 
 function loadStopData(route, cb) {
   
-  var url = "http://localhost:12345/route/" + route;
+  var url = "bus-routes-api.herokuapp.com/route/" + route;
 
   $.getJSON(url, function(data){
   
