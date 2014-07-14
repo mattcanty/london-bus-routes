@@ -1,6 +1,6 @@
 var static = require('node-static');
 
-var fileServer = new static.Server();
+var fileServer = new static.Server(__dirname);
 
 function route(handle, pathname, response, request){
   console.log("About to route a request for: '" + pathname + "'.");
@@ -8,14 +8,7 @@ function route(handle, pathname, response, request){
   if(typeof handle[pathname] === 'function') {
     handle[pathname](response, request);
   } else {
-    console.log("Loading static file " + pathname);
-    
-    request.addListener('error', function () {
-    })
-    
-    request.addListener('end', function () {
-        fileServer.serve(request, response);
-    }).resume();
+    handle.loadStaticFile(response, request, pathname);
   }
 }
 

@@ -3,7 +3,7 @@ var url = require("url");
 
 function start(route, handle) {
   function onRequest(request, response) {
-	  var pathname = url.parse(request.url).pathname.split("/", 2)[1];
+	  var pathname = url.parse(request.url).pathname;
 	  console.log("Request for " + pathname + " received");
     
 	  route(handle, pathname, response, request); 

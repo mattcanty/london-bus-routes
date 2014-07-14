@@ -1,27 +1,29 @@
 var fs = require("fs");
+var static = require('node-static');
+
+var fileServer = new static.Server(__dirname);
 
 function busroutes(response, request) {
   console.log("Request handler 'busroutes' was called");
   
-  loadStaticFile("/html/index.html", response);
+  fileServer.serveFile('/html/index.html', 200, {}, request, response);
 }
 
-function loadStaticFile(path, response) {
+function getRoute(response, request){
+  console.log("Getting route")
+}
 
-  var fullPath = __dirname + path;
-
-  console.log("Loading static file: " + fullPath);
-
-  fs.readFile(fullPath, "utf8", function(error, html) {
-    if (error) {
-      console.log(path + " " + error);
-      throw error; 
-    }
-    response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(html);
-    response.end();
-  });
+function loadStaticFile(response, request) {
+    
+  request.addListener('error', function (err) {
+    console.log(err);
+  })
+  
+  request.addListener('end', function () {
+      fileServer.serve(request, response);
+  }).resume();
 }
 
 exports.busroutes = busroutes;
-
+exports.getRoute = getRoute;
+exports.loadStaticFile = loadStaticFile;
