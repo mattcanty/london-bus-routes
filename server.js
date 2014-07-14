@@ -13,7 +13,7 @@ function start(route, handle) {
     route(handle, pathname, response, request); 
   }
   
-  var port = process.env.PORT || 8080;
+  var port = 80;
   
   http.createServer(onRequest).listen(port);
   console.log("Server has started on port " + port);
