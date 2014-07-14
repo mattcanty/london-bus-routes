@@ -52,8 +52,6 @@ function loadStopData(route, cb) {
 
   $.getJSON(url, function(data){
   
-    console.log(data);
-    
     if(data.message) {
       cb(data.message);
       return;
@@ -62,17 +60,15 @@ function loadStopData(route, cb) {
     stopSequence = data["_runs"][direction];
     var polyRoute = [];    
   
-    console.log(stopSequence);
-    
     clearRoute();
   
     for (var i = 0; i < stopSequence.length; i++) {
       
       var stopData = stopSequence[i];
       
-      var title = stopData["name"];
-      var lat = stopData["_latitudee"];
-      var lon = stopData["_longtiude"];
+      var title = stopData["_name"];
+      var lat = stopData["_latitude"];
+      var lon = stopData["_longitude"];
       
       polyRoute.push(new google.maps.LatLng(lat,lon));
       
@@ -100,8 +96,8 @@ function buildMarker(title, lat, lon, icon) {
   var marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat,lon),
       map: map,
-      title: title
-      //icon: icon
+      title: title,
+      icon: icon
   });
     
   google.maps.event.addListener(marker, 'click', (function(marker) {
