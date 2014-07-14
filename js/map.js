@@ -5,6 +5,13 @@ var busPolyLine;
 var stopSequence;
 var direction = 1;
 var infowindow;
+var base_url = window.location.origin;
+
+var markerIcons = {
+  "green":"/markers/marker_rounded_green.png",
+  "red":"/markers/marker_rounded_red.png",
+  "blue":"/markers/marker_rounded_blue.png"
+};
 
 function initialize() {        
   var transitLayer = new google.maps.TransitLayer();
@@ -41,10 +48,12 @@ function zeroMap(){
 
 function loadStopData(route, cb) {
   
-  var url = "http://bus-routes-api.herokuapp.com/route/" + route;
+  var url = base_url + "/route/" + route;
 
   $.getJSON(url, function(data){
   
+    console.log(data);
+    
     if(data.message) {
       cb(data.message);
       return;
@@ -53,6 +62,8 @@ function loadStopData(route, cb) {
     stopSequence = data["_runs"][direction];
     var polyRoute = [];    
   
+    console.log(stopSequence);
+    
     clearRoute();
   
     for (var i = 0; i < stopSequence.length; i++) {
@@ -65,17 +76,13 @@ function loadStopData(route, cb) {
       
       polyRoute.push(new google.maps.LatLng(lat,lon));
       
-      var icon = "markers/marker_rounded_";
-      
       if (i === 0) {
-        icon += "green.png";
+        buildMarker(title, lat, lon, markerIcons.green);
       } else if (i === stopSequence.length - 1) {
-        icon += "red.png";
+        buildMarker(title, lat, lon, markerIcons.red);
       } else {
-        icon += "blue.png";
+        buildMarker(title, lat, lon, markerIcons.blue);
       }
-      
-      buildMarker(title, lat, lon, icon);
     }
     
     buildPolyline(polyRoute);
@@ -93,8 +100,8 @@ function buildMarker(title, lat, lon, icon) {
   var marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat,lon),
       map: map,
-      title: title,
-      icon: icon
+      title: title
+      //icon: icon
   });
     
   google.maps.event.addListener(marker, 'click', (function(marker) {
