@@ -1,23 +1,20 @@
-var fs = require("fs");
 var static = require('node-static');
 
 var fileServer = new static.Server(__dirname);
 
 function busroutes(response, request) {
-  console.log("Request handler 'busroutes' was called");
-  
   fileServer.serveFile('/html/index.html', 200, {}, request, response);
 }
 
 function getRoute(response, request){
-  console.log("Getting route")
+  console.log("Getting route");
 }
 
 function loadStaticFile(response, request) {
     
   request.addListener('error', function (err) {
     console.log(err);
-  })
+  });
   
   request.addListener('end', function () {
       fileServer.serve(request, response);
