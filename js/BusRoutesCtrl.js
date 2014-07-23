@@ -4,8 +4,13 @@ angular.module('BusRoutesApp', [])
     $scope.info = "Where does this bus go?!";
   
     $scope.findRoute = function(){
-      loadStopData($scope.route, function (message) {
-        $scope.info = message;
-      });
+      updateInfo("Looking for " + $scope.route + "...");
+
+      loadStopData($scope.route, updateInfo);
     };
+    
+    function updateInfo(message){
+      $scope.info = message;
+    }
   });
+  
