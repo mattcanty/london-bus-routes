@@ -1,5 +1,5 @@
 var http = require('http-get');
-var url = require("url");
+var url = require('url');
 var static = require('node-static');
 
 var fileServer = new static.Server(__dirname);
@@ -19,7 +19,7 @@ function getRoute(response, request){
     if (err) {
       console.error(err);
     } else {
-      response.writeHead(200, {"Content-Type": "text/json"});
+      response.writeHead(200, {'Content-Type': 'text/json'});
       response.write(res.buffer.toString());
       response.end();
     }
