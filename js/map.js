@@ -46,6 +46,41 @@ function zeroMap(){
   map.fitBounds(bounds);
 }
 
+function placeMarkers(data){
+  stopSequence = data['_runs'][direction];
+  
+  var polyRoute = [];    
+
+  clearRoute();
+
+  for (var i = 0; i < stopSequence.length; i++) {
+
+    var stopData = stopSequence[i];
+
+    var title = stopData['_name'];
+    var lat = stopData['_latitude'];
+    var lon = stopData['_longitude'];
+
+    polyRoute.push(new google.maps.LatLng(lat,lon));
+
+    if (i === 0) {
+      buildMarker(title, lat, lon, markerIcons.green);
+    } else if (i === stopSequence.length - 1) {
+      buildMarker(title, lat, lon, markerIcons.red);
+    } else {
+      buildMarker(title, lat, lon, markerIcons.blue);
+    }
+  }
+
+  buildPolyline(polyRoute);
+
+  map.fitBounds(bounds);
+
+  $('#mapcontainer').stop().animate({
+    scrollTop: $("#mapcontainer")[0].scrollHeight
+  }, 800);
+}
+
 function loadStopData(route) {
 
   var url = base_url + '/route/' + route;
@@ -56,37 +91,7 @@ function loadStopData(route) {
       return;
     }
     
-    stopSequence = data['_runs'][direction];
-    var polyRoute = [];    
-
-    clearRoute();
-
-    for (var i = 0; i < stopSequence.length; i++) {
-
-      var stopData = stopSequence[i];
-
-      var title = stopData['_name'];
-      var lat = stopData['_latitude'];
-      var lon = stopData['_longitude'];
-
-      polyRoute.push(new google.maps.LatLng(lat,lon));
-
-      if (i === 0) {
-        buildMarker(title, lat, lon, markerIcons.green);
-      } else if (i === stopSequence.length - 1) {
-        buildMarker(title, lat, lon, markerIcons.red);
-      } else {
-        buildMarker(title, lat, lon, markerIcons.blue);
-      }
-    }
-
-    buildPolyline(polyRoute);
-
-    map.fitBounds(bounds);
-
-    $('#mapcontainer').stop().animate({
-      scrollTop: $("#mapcontainer")[0].scrollHeight
-    }, 800);
+    placeMarkers(data)
   });
 }
 
