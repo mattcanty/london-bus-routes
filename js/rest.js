@@ -9,7 +9,6 @@ restHelpers.factory('http', function($http, $q){
         $http.get(url)
             .success(function (data) {
                 deferred.resolve(data);
-                console.log(data);
             })
             .error(function (error, status) {
                 deferred.reject(error, status);

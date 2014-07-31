@@ -5,10 +5,14 @@ function BusRoutesController($scope, busRoutesService){
       updateInfo('Looking for ' + $scope.route + '...');
       
       busRoutesService.search($scope.route).then(function(data){
+        updateInfo('Reticulating splines');
+        console.log(data);
         placeMarkers(data);
+        
+        updateInfo('Here is ' + data._route + '\'s route!');
+        
+        resizeMap();
       });
-
-      //loadStopData($scope.route);
     };
     
     function updateInfo(message){

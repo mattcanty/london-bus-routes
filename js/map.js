@@ -75,24 +75,12 @@ function placeMarkers(data){
   buildPolyline(polyRoute);
 
   map.fitBounds(bounds);
+}
 
+function resizeMap(){
   $('#mapcontainer').stop().animate({
     scrollTop: $("#mapcontainer")[0].scrollHeight
   }, 800);
-}
-
-function loadStopData(route) {
-
-  var url = base_url + '/route/' + route;
-
-  $.getJSON(url, function(data){
-
-    if(data.message) {
-      return;
-    }
-    
-    placeMarkers(data)
-  });
 }
 
 function buildMarker(title, lat, lon, icon) {
