@@ -6,7 +6,7 @@ angular.module('BusRoutesApp', [])
     $scope.findRoute = function(){
       updateInfo('Looking for ' + $scope.route + '...');
 
-      loadStopData($scope.route, updateInfo);
+      loadStopData($scope.route);
     };
     
     function updateInfo(message){

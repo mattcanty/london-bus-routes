@@ -46,14 +46,13 @@ function zeroMap(){
   map.fitBounds(bounds);
 }
 
-function loadStopData(route, cb) {
+function loadStopData(route) {
 
   var url = base_url + '/route/' + route;
 
   $.getJSON(url, function(data){
 
     if(data.message) {
-      cb(data.message);
       return;
     }
     
